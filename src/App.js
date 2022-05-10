@@ -1,15 +1,24 @@
-import "./App.scss";
-import arrow from "./assets/icons/arrow.svg";
 import { useEffect, useState } from "react";
 import { SearchField } from "./components/SearchField/SearchField";
+import { Routes, Route } from "react-router-dom";
+
+import "./App.scss";
+import arrow from "./assets/icons/arrow.svg";
+
+import { TablePage } from "./components/TablePage/TablePage";
+import { Pagination } from "./components/Pagination/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataAction } from "./store/reducers/paginateReducer";
 
 function App() {
-  const [state, setState] = useState();
+  const { posts } = useSelector((state) => state);
+  const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts ")
-      .then((res) => res.json())
-      .then((data) => setState(data));
+    dispatch(getDataAction());
   }, []);
+
   return (
     <div className="wrapper">
       <SearchField />
@@ -30,17 +39,11 @@ function App() {
             </th>
           </tr>
         </thead>
-        <tbody>
-          {state &&
-            state.map((el) => (
-              <tr style={{ border: "1px solid #E3E6EC" }} key={el.id}>
-                <td className="id">{el.id}</td>
-                <td className="heading">{el.title}</td>
-                <td className="description">{el.body}</td>
-              </tr>
-            ))}
-        </tbody>
+        <Routes>
+          <Route path="/" element={<TablePage data={posts} />} />
+        </Routes>
       </table>
+      <Pagination />
     </div>
   );
 }
