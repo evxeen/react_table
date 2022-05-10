@@ -8,7 +8,7 @@ import arrow from "./assets/icons/arrow.svg";
 import { TablePage } from "./components/TablePage/TablePage";
 import { Pagination } from "./components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getDataAction } from "./store/reducers/paginateReducer";
+import { getDataAction } from "./store/actions/dataActions";
 
 function App() {
   const { posts } = useSelector((state) => state);
