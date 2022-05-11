@@ -1,6 +1,6 @@
 import axios from "axios";
 import { takeEvery, put, call } from "redux-saga/effects";
-import { getDataAction, setDataAction } from "../actions/dataActions";
+import { setDataAction } from "../actions/dataActions";
 import { GET_DATA } from "../types";
 
 const fetchDataJson = () =>

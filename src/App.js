@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SearchField } from "./components/SearchField/SearchField";
-import { Routes, Route } from "react-router-dom";
 
 import "./App.scss";
 import arrow from "./assets/icons/arrow.svg";
@@ -11,9 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataAction } from "./store/actions/dataActions";
 
 function App() {
-  const { posts } = useSelector((state) => state);
-  const [page, setPage] = useState(1);
+  const { posts, currentPage, perPage } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const lastPageIndex = currentPage * perPage;
+  const firstPageIndex = lastPageIndex - perPage;
+  const currentPosts = posts.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     dispatch(getDataAction());
@@ -39,11 +41,9 @@ function App() {
             </th>
           </tr>
         </thead>
-        <Routes>
-          <Route path="/" element={<TablePage data={posts} />} />
-        </Routes>
+        <TablePage data={currentPosts} />
       </table>
-      <Pagination />
+      <Pagination perPage={perPage} totalPosts={posts.length} />
     </div>
   );
 }
