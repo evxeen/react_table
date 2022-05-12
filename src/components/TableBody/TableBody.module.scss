@@ -1,0 +1,45 @@
+.w {
+  height: 500px;
+  overflow-x: auto;
+  border: 1px solid #E3E6EC;
+
+}
+
+.table {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px;
+  border-collapse: collapse;
+}
+
+.row {
+  border: 1px solid #E3E6EC;
+}
+
+.id {
+  border: 1px solid #E3E6EC;
+  text-align: center;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 13px;
+  color: #474955;
+  width: 10.2%
+}
+
+.title {
+  border: 1px solid #E3E6EC;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 137.69%;
+  color: #474955;
+  width: 40.6px;
+  padding-left: 8px;
+}
+.description {
+  border: 1px solid #E3E6EC;
+  width: 40.2%;
+  font-size: 13px;
+  padding: 15px 12px 15px 11px;
+}
