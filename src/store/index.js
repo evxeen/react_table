@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { reducer } from "./reducers/paginateReducer";
+import { reducer } from "./reducers/reducer";
 import { dataWatcher } from "./saga/getData";
 
 const sagaMiddleware = createSagaMiddleware();

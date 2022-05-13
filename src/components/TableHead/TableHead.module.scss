@@ -14,10 +14,6 @@
   color: #FFFFFF;
   background: #474955;
   width: 10.2%;
-
-  span {
-    margin-right: 25px;
-  }
 }
 
 .title {
@@ -29,10 +25,6 @@
   color: #FFFFFF;
   background: #474955;
   width: 40.6px;
-
-  span {
-    margin-right: 25px;
-  }
 }
 
 .description {
@@ -44,11 +36,18 @@
   color: #FFFFFF;
   background: #474955;
   width: 40.2%;
-
-  span {
-    margin-right: 25px;
-  }
 }
 
 
+span {
+  margin-right: 25px;
+  cursor: pointer;
+}
 
+.sorted {
+  color: #7EBC3C;
+}
+
+.arrow {
+  transform: rotate(180deg);
+}
