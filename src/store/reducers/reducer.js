@@ -16,6 +16,9 @@ const sortedFields = (state, field) => {
   }
 };
 
+const filteredArray = (state, action) =>
+  state.posts.filter((item) => item.title.includes(action));
+
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DATA:
@@ -43,6 +46,7 @@ export const reducer = (state = initialState, action) => {
         sortedBy: "description",
         directionSort: !state.directionSort,
       };
+
     default:
       return state;
   }
