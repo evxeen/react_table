@@ -3,8 +3,6 @@ import s from "./SearchField.module.scss";
 import { useDispatch } from "react-redux";
 
 export const SearchField = ({ searchFiltered }) => {
-  const dispatch = useDispatch();
-
   const searchInputHandler = (e) => {
     searchFiltered(e.target.value);
   };

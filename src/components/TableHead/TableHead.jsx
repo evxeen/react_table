@@ -3,14 +3,18 @@ import s from "./TableHead.module.scss";
 import arrow from "../../assets/icons/arrow.svg";
 import { useDispatch, useSelector } from "react-redux";
 
-export const TableHead = () => {
+export const TableHead = ({ sorting }) => {
   const { sortedBy, directionSort } = useSelector((state) => state);
   const dispatch = useDispatch();
   const headings = [
-    { name: "ID", className: "id", sorted: "NUMBER" },
+    { name: "ID", className: "id", sorted: "ID" },
     { name: "Заголовок", className: "title", sorted: "TITLE" },
-    { name: "Описание", className: "description", sorted: "DESCRIPTION" },
+    { name: "Описание", className: "body", sorted: "BODY" },
   ];
+
+  const sortHandler = (sorted) => {
+    sorting(sorted);
+  };
   return (
     <table className={s.table}>
       <thead>
@@ -19,7 +23,7 @@ export const TableHead = () => {
             <th className={s[heading.className]} key={heading.name}>
               <span
                 className={sortedBy === heading.className ? s.sorted : ""}
-                onClick={() => dispatch({ type: `SORT_BY_${heading.sorted}` })}
+                onClick={() => sortHandler(heading.sorted)}
               >
                 {heading.name}
               </span>

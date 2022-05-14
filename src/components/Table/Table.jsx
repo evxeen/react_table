@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 
 import { TableHead } from "../TableHead/TableHead";
 
-export const Table = () => {
+export const Table = ({ sorting }) => {
   return (
     <>
-      <TableHead />
+      <TableHead sorting={sorting} />
       <Outlet />
     </>
   );

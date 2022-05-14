@@ -9,11 +9,13 @@ import { Table } from "./components/Table/Table";
 import { Pagination } from "./components/Pagination/Pagination";
 import { getDataAction } from "./store/actions/dataActions";
 import { TableBody } from "./components/TableBody/TableBody";
+import { sortedFields } from "./helpers/helpers";
 
 function App() {
-  const { posts, currentPage, perPage } = useSelector((state) => state);
+  const { posts, currentPage, perPage, directionSort, sortedBy } = useSelector(
+    (state) => state
+  );
   const [filteredArray, setFilteredArray] = useState([]);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,16 +25,23 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setFilteredArray(posts);
+    setFilteredArray([...posts]);
   }, [posts]);
+
+  const sorting = (field) => {
+    setFilteredArray((prev) =>
+      [...prev].sort(sortedFields(directionSort, field))
+    );
+    dispatch({ type: "DIRECTION_SORT" });
+    dispatch({ type: "SORTED_BY", payload: field.toLowerCase() });
+  };
 
   const lastPageIndex = currentPage * perPage;
   const firstPageIndex = lastPageIndex - perPage;
   const currentPosts = filteredArray.slice(firstPageIndex, lastPageIndex);
 
   const searchFiltered = (value) => {
-    const arrayData = [...posts];
-    const newArray = arrayData.filter((item) => item.title.includes(value));
+    const newArray = [...posts].filter((item) => item.title.includes(value));
     setFilteredArray((prev) => [...newArray]);
   };
 
@@ -40,11 +49,11 @@ function App() {
     <div className="wrapper">
       <SearchField searchFiltered={searchFiltered} />
       <Routes>
-        <Route path="/" element={<Table />}>
+        <Route path="/" element={<Table sorting={sorting} />}>
           <Route path={`/:page`} element={<TableBody posts={currentPosts} />} />
         </Route>
       </Routes>
-      <Pagination perPage={perPage} totalPosts={posts.length} />
+      <Pagination perPage={perPage} totalPosts={filteredArray.length} />
     </div>
   );
 }
