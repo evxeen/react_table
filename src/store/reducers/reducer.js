@@ -8,14 +8,6 @@ const initialState = {
   directionSort: true,
 };
 
-const sortedFields = (state, field) => {
-  if (state.directionSort) {
-    return (a, b) => (a[field] > b[field] ? 1 : -1);
-  } else {
-    return (a, b) => (a[field] < b[field] ? 1 : -1);
-  }
-};
-
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DATA:

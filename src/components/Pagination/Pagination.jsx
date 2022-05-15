@@ -16,9 +16,8 @@ export const Pagination = ({ perPage, totalPosts }) => {
   return (
     <div className={s.paginationBlock}>
       <NavLink
-        disabled={currentPage === perPage - perPage + 1}
         className={
-          currentPage === perPage - perPage + 1
+          currentPage === pageNumbers.length - pageNumbers.length + 1
             ? `${s.button} ${s.disabled}`
             : s.button
         }
@@ -42,9 +41,10 @@ export const Pagination = ({ perPage, totalPosts }) => {
       </div>
       <NavLink
         className={
-          currentPage === perPage ? `${s.button} ${s.disabled}` : s.button
+          currentPage === pageNumbers.length
+            ? `${s.button} ${s.disabled}`
+            : s.button
         }
-        disabled={currentPage === perPage}
         to={`${currentPage + 1}`}
         onClick={() => dispatch(setCurrentPage(currentPage + 1))}
       >

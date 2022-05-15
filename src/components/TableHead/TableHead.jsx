@@ -1,11 +1,10 @@
 import React from "react";
 import s from "./TableHead.module.scss";
 import arrow from "../../assets/icons/arrow.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export const TableHead = ({ sorting }) => {
   const { sortedBy, directionSort } = useSelector((state) => state);
-  const dispatch = useDispatch();
   const headings = [
     { name: "ID", className: "id", sorted: "ID" },
     { name: "Заголовок", className: "title", sorted: "TITLE" },

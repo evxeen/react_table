@@ -12,12 +12,16 @@ import { TableBody } from "./components/TableBody/TableBody";
 import { sortedFields } from "./helpers/helpers";
 
 function App() {
-  const { posts, currentPage, perPage, directionSort, sortedBy } = useSelector(
+  const { posts, currentPage, perPage, directionSort } = useSelector(
     (state) => state
   );
   const [filteredArray, setFilteredArray] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const lastPageIndex = currentPage * perPage;
+  const firstPageIndex = lastPageIndex - perPage;
+  const currentPosts = filteredArray.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     dispatch(getDataAction());
@@ -29,19 +33,13 @@ function App() {
   }, [posts]);
 
   const sorting = (field) => {
-    setFilteredArray((prev) =>
-      [...prev].sort(sortedFields(directionSort, field))
-    );
+    setFilteredArray((prev) => prev.sort(sortedFields(directionSort, field)));
     dispatch({ type: "DIRECTION_SORT" });
     dispatch({ type: "SORTED_BY", payload: field.toLowerCase() });
   };
 
-  const lastPageIndex = currentPage * perPage;
-  const firstPageIndex = lastPageIndex - perPage;
-  const currentPosts = filteredArray.slice(firstPageIndex, lastPageIndex);
-
   const searchFiltered = (value) => {
-    const newArray = [...posts].filter((item) => item.title.includes(value));
+    const newArray = posts.filter((item) => item.title.includes(value));
     setFilteredArray((prev) => [...newArray]);
   };
 

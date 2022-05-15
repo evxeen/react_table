@@ -16,7 +16,7 @@
     transition: 0.3s ease;
     cursor: pointer;
 
-    &.disabled[disabled] {
+    &.disabled {
       pointer-events: none;
       opacity: 0.4;
     }
