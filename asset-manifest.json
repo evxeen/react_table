@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react_table/static/css/main.972fe42e.css",
+    "main.js": "/react_table/static/js/main.9356da02.js",
+    "static/media/search.svg": "/react_table/static/media/search.42a69f6c4dc27bbf7c00.svg",
+    "index.html": "/react_table/index.html",
+    "static/media/arrow.svg": "/react_table/static/media/arrow.4320ae5d44313dde36c3d34278b180ec.svg",
+    "main.972fe42e.css.map": "/react_table/static/css/main.972fe42e.css.map",
+    "main.9356da02.js.map": "/react_table/static/js/main.9356da02.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.972fe42e.css",
+    "static/js/main.9356da02.js"
+  ]
+}
