@@ -10,6 +10,11 @@ import { Pagination } from "./components/Pagination/Pagination";
 import { getDataAction } from "./store/actions/dataActions";
 import { TableBody } from "./components/TableBody/TableBody";
 import { sortedFields } from "./helpers/helpers";
+import {
+  setDirectionSortAction,
+  setLoadingAction,
+  sortedByAction,
+} from "./store/actions/pagesActions";
 
 function App() {
   const { posts, currentPage, perPage, directionSort } = useSelector(
@@ -26,6 +31,7 @@ function App() {
   useEffect(() => {
     dispatch(getDataAction());
     navigate(`/${currentPage}`, { replace: true });
+    dispatch(setLoadingAction());
   }, []);
 
   useEffect(() => {
@@ -34,13 +40,13 @@ function App() {
 
   const sorting = (field) => {
     setFilteredArray((prev) => prev.sort(sortedFields(directionSort, field)));
-    dispatch({ type: "DIRECTION_SORT" });
-    dispatch({ type: "SORTED_BY", payload: field.toLowerCase() });
+    dispatch(setDirectionSortAction());
+    dispatch(sortedByAction(field.toLowerCase()));
   };
 
   const searchFiltered = (value) => {
     const newArray = posts.filter((item) => item.title.includes(value));
-    setFilteredArray((prev) => [...newArray]);
+    setFilteredArray([...newArray]);
   };
 
   return (

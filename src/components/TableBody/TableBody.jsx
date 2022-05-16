@@ -1,9 +1,16 @@
 import React from "react";
 import s from "./TableBody.module.scss";
+import { Loader } from "../Loader/Loader";
+import { useSelector } from "react-redux";
 
 export const TableBody = ({ posts }) => {
+  const { isLoading } = useSelector((state) => state);
+
+  if (!isLoading) {
+    return <Loader />;
+  }
   return (
-    <div className={s.w}>
+    <div className={s.tableBodyWrap}>
       <table className={s.table}>
         <tbody>
           {posts &&

@@ -1,8 +1,9 @@
-.w {
+.tableBodyWrap {
   height: 500px;
   overflow-x: auto;
   border: 1px solid #E3E6EC;
-
+  display: flex;
+  align-items: center;
 }
 
 .table {
